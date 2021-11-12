@@ -18,7 +18,7 @@ cinturaEntry = Entry(root, width=15)
 caderaEntry = Entry(root, width=15)
 
 # Define buttons
-button1 = Button(root, text="Calcular talla")
+buttonCalcular = Button(root, text="Calcular talla")
 
 # Put elements on app
 inicioLabel.grid(row=0, column=0, columnspan=2)
@@ -35,7 +35,7 @@ cinturaEntry.grid(row=3, column=1)
 caderaLabel.grid(row=4, column=0)
 caderaEntry.grid(row=4, column=1)
 
-button1.grid(row=5, column=1)
+buttonCalcular.grid(row=5, column=1)
 
 # Initialize main loop and app
 root.mainloop()
