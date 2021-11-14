@@ -1,6 +1,6 @@
 from tkinter import *
 
-# Initialize tkinter
+# Initialize tkinter and give it a page name
 root = Tk()
 root.title("Pedidos Grant Esgrima: Equipaciones")
 
