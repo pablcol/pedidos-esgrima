@@ -13,11 +13,33 @@ equipacionFrame = LabelFrame(root, text="Selección equipación:", padx=5, pady=
 
 
 # Define functions
-def medidas(pecho, altura):
-    if 82 <= pecho <= 86 and 164 <= altura <= 170:
+def medidas(altura, pecho, cintura, cadera):
+    tallaLabel = Label(medidasFrame, text="Talla:                  ")
+    tallaLabel.grid(row=5, column=0, sticky=W)
+    if 164 <= altura <= 170 and 82 <= pecho <= 88 and 70 <= cintura <= 74 and 88 <= cadera <= 92:
         talla = 44
-    else:
-        talla = 0
+    elif 164 <= altura <= 170 and 89 <= pecho <= 92 and 75 <= cintura <= 78 and 93 <= cadera <= 96:
+        talla = 46
+    elif 171 <= altura <= 176 and 93 <= pecho <= 96 and 79 <= cintura <= 82 and 97 <= cadera <= 100:
+        talla = 48
+    elif 171 <= altura <= 176 and 97 <= pecho <= 100 and 83 <= cintura <= 86 and 101 <= cadera <= 104:
+        talla = 50
+    elif 177 <= altura <= 182 and 101 <= pecho <= 104 and 87 <= cintura <= 90 and 105 <= cadera <= 108:
+        talla = 52
+    elif 177 <= altura <= 182 and 105 <= pecho <= 108 and 91 <= cintura <= 94 and 109 <= cadera <= 112:
+        talla = 54
+    elif 183 <= altura <= 188 and 109 <= pecho <= 112 and 95 <= cintura <= 98 and 113 <= cadera <= 116:
+        talla = 56
+    elif 183 <= altura <= 188 and 113 <= pecho <= 116 and 99 <= cintura <= 102 and 117 <= cadera <= 120:
+        talla = 58
+    elif 183 <= altura <= 188 and 117 <= pecho <= 120 and 103 <= cintura <= 106 and 121 <= cadera <= 124:
+        talla = 60
+    elif 189 <= altura <= 194 and 121 <= pecho <= 124 and 107 <= cintura <= 110 and 125 <= cadera <= 128:
+        talla = 62
+    elif 195 <= altura <= 200 and 125 <= pecho <= 128 and 111 <= cintura <= 114 and 129 <= cadera <= 132:
+        talla = 64
+    else: 
+        talla = "Especial"
     tallaLabel = Label(medidasFrame, text="Talla: " + str(talla))
     tallaLabel.grid(row=5, column=0, sticky=W)
     return    
@@ -65,7 +87,7 @@ cinturaEntry = Entry(medidasFrame, width=15)
 caderaEntry = Entry(medidasFrame, width=15)
 
 # Define buttons
-buttonCalcular = Button(medidasFrame, text="Calcular talla", command=lambda: medidas(int(pechoEntry.get()), int(alturaEntry.get())))
+buttonCalcular = Button(medidasFrame, text="Calcular talla", command=lambda: medidas(int(alturaEntry.get()), int(pechoEntry.get()), int(cinturaEntry.get()), int(caderaEntry.get())))
 equipMButton = Button(equipacionFrame, text="Equipación completa Mas", command=lambda: equipcompleta("masc"))
 equipFButton = Button(equipacionFrame, text="Equipación completa Fem", command=lambda: equipcompleta("fem"))
 limpiarEquipButton = Button(equipacionFrame, text="Limpiar", command=limpiarequip)
