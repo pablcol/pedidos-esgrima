@@ -22,6 +22,15 @@ def equipCompletaF():
     protectorLabel.grid(row=6, column=1)
     return
 
+def limpiar():
+    caretaLabel.grid_remove()
+    guanteLabel.grid_remove()
+    chaquetillaLabel.grid_remove()
+    espadalabel.grid_remove()
+    pasanteLabel.grid_remove()
+    protectorLabel.grid_remove()
+    return
+
 # Create label texts
 equipLabel = Label(root, text="Equipación completa")
 caretaLabel = Label(root, text="Careta")
@@ -36,10 +45,12 @@ protectorLabel = Label(root, text="Protector femenino")
 # Define buttons
 equipMButton = Button(root, text="Equipación completa Mas", command=equipCompletaM)
 equipFButton = Button(root, text="Equipación completa Fem", command=equipCompletaF)
+limpiarButton = Button(root, text="Limpiar", command=limpiar)
 
 # Put elements on app
 equipMButton.grid(row=0, column=0)
 equipFButton.grid(row=0, column=1)
+limpiarButton.grid(row=7, column=0, columnspan=2)
 
 # Initialize main loop and app
 root.mainloop()
