@@ -10,27 +10,23 @@ talla = 44
 medidasFrame = LabelFrame(root, text="Medidas tirador/a:", padx=5, pady=5)
 equipacionFrame = LabelFrame(root, text="Selección equipación:", padx=5, pady=5)
 
+
 # Define functions
 def medidas():
     talla = 1
     return talla
 
-def equipCompletaM():
+
+def equipcompleta(sexo):
     caretaLabel.grid(row=1, column=0)
     guanteLabel.grid(row=2, column=0)
     chaquetillaLabel.grid(row=3, column=0)
     espadalabel.grid(row=4, column=0)
     pasanteLabel.grid(row=5, column=0)
+    if sexo == "fem":
+        protectorLabel.grid(row=6, column=0)
     return
 
-def equipCompletaF():
-    caretaLabel.grid(row=1, column=1)
-    guanteLabel.grid(row=2, column=1)
-    chaquetillaLabel.grid(row=3, column=1)
-    espadalabel.grid(row=4, column=1)
-    pasanteLabel.grid(row=5, column=1)
-    protectorLabel.grid(row=6, column=1)
-    return
 
 def limpiar():
     caretaLabel.grid_remove()
@@ -40,6 +36,7 @@ def limpiar():
     pasanteLabel.grid_remove()
     protectorLabel.grid_remove()
     return
+
 
 # Create label texts
 alturaLabel = Label(medidasFrame, text="Altura en cm:")
@@ -65,13 +62,13 @@ caderaEntry = Entry(medidasFrame, width=15)
 # Define buttons
 buttonCalcular = Button(medidasFrame, text="Calcular talla")
 
-equipMButton = Button(equipacionFrame, text="Equipación completa Mas", command=equipCompletaM)
-equipFButton = Button(equipacionFrame, text="Equipación completa Fem", command=equipCompletaF)
+equipMButton = Button(equipacionFrame, text="Equipación completa Mas", command=lambda: equipcompleta("masc"))
+equipFButton = Button(equipacionFrame, text="Equipación completa Fem", command=lambda: equipcompleta("fem"))
 limpiarButton = Button(equipacionFrame, text="Limpiar", command=limpiar)
 
 # Put elements on app
 
-    # Medidas
+# Medidas
 alturaLabel.grid(row=1, column=0, sticky=W)
 alturaEntry.grid(row=1, column=2)
 
@@ -87,12 +84,12 @@ caderaEntry.grid(row=4, column=2)
 tallaLabel.grid(row=5, column=0, sticky=W)
 buttonCalcular.grid(row=5, column=2)
 
-    # Equipaciones
+# Equipaciones
 equipMButton.grid(row=0, column=0)
 equipFButton.grid(row=0, column=1)
 limpiarButton.grid(row=7, column=0)
 
-    # Frames
+# Frames
 medidasFrame.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
 equipacionFrame.grid(row=0, column=1, sticky=W, padx=10, pady=10)
 
