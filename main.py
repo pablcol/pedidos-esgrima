@@ -4,6 +4,7 @@ from tkinter import Tk
 # Initialize tkinter and give it a page name
 root = Tk()
 root.title("Pedidos Grant Esgrima")
+root.iconbitmap("CEApng.ico")
 talla = 44
 
 # Define frames
