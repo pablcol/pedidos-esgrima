@@ -4,7 +4,7 @@ from tkinter import Tk
 # Initialize tkinter and give it a page name
 root = Tk()
 root.title("Pedidos Grant Esgrima")
-talla = 42
+talla = 44
 
 # Define frames
 medidasFrame = LabelFrame(root, text="Medidas tirador/a:", padx=5, pady=5)
