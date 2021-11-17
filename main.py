@@ -12,7 +12,7 @@ equipacionFrame = LabelFrame(root, text="Selección equipación:", padx=5, pady=
 
 
 # Define functions
-def medidas(altura, pecho, cintura, cadera):
+def medidasmasculino(altura, pecho, cintura, cadera):
     tallalabel = Label(medidasFrame, text="Talla:                  ")
     tallalabel.grid(row=5, column=0, sticky=W)
     if 164 <= altura <= 170 and 82 <= pecho <= 88 and 70 <= cintura <= 74 and 88 <= cadera <= 92:
@@ -86,10 +86,10 @@ cinturaEntry = Entry(medidasFrame, width=15)
 caderaEntry = Entry(medidasFrame, width=15)
 
 # Define buttons
-buttonCalcular = Button(medidasFrame, text="Calcular talla", command=lambda: medidas(int(alturaEntry.get()),
-                                                                                     int(pechoEntry.get()),
-                                                                                     int(cinturaEntry.get()),
-                                                                                     int(caderaEntry.get())))
+buttonCalcular = Button(medidasFrame, text="Calcular talla", command=lambda: medidasmasculino(int(alturaEntry.get()),
+                                                                                              int(pechoEntry.get()),
+                                                                                              int(cinturaEntry.get()),
+                                                                                              int(caderaEntry.get())))
 equipMButton = Button(equipacionFrame, text="Equipación completa Mas", command=lambda: equipcompleta("masc"))
 equipFButton = Button(equipacionFrame, text="Equipación completa Fem", command=lambda: equipcompleta("fem"))
 limpiarEquipButton = Button(equipacionFrame, text="Limpiar", command=limpiarequip)
