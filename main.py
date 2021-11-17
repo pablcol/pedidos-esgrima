@@ -5,7 +5,6 @@ from tkinter import Tk
 root = Tk()
 root.title("Pedidos Grant Esgrima")
 # root.iconbitmap("CEApng.ico")
-talla = 0
 
 # Define frames
 medidasFrame = LabelFrame(root, text="Medidas tirador/a:", padx=5, pady=5)
@@ -14,8 +13,8 @@ equipacionFrame = LabelFrame(root, text="Selección equipación:", padx=5, pady=
 
 # Define functions
 def medidas(altura, pecho, cintura, cadera):
-    tallaLabel = Label(medidasFrame, text="Talla:                  ")
-    tallaLabel.grid(row=5, column=0, sticky=W)
+    tallalabel = Label(medidasFrame, text="Talla:                  ")
+    tallalabel.grid(row=5, column=0, sticky=W)
     if 164 <= altura <= 170 and 82 <= pecho <= 88 and 70 <= cintura <= 74 and 88 <= cadera <= 92:
         talla = 44
     elif 164 <= altura <= 170 and 89 <= pecho <= 92 and 75 <= cintura <= 78 and 93 <= cadera <= 96:
@@ -40,9 +39,9 @@ def medidas(altura, pecho, cintura, cadera):
         talla = 64
     else: 
         talla = "Especial"
-    tallaLabel = Label(medidasFrame, text="Talla: " + str(talla))
-    tallaLabel.grid(row=5, column=0, sticky=W)
-    return    
+    tallalabel = Label(medidasFrame, text="Talla: " + str(talla))
+    tallalabel.grid(row=5, column=0, sticky=W)
+    return
 
 
 def equipcompleta(sexo):
@@ -87,7 +86,10 @@ cinturaEntry = Entry(medidasFrame, width=15)
 caderaEntry = Entry(medidasFrame, width=15)
 
 # Define buttons
-buttonCalcular = Button(medidasFrame, text="Calcular talla", command=lambda: medidas(int(alturaEntry.get()), int(pechoEntry.get()), int(cinturaEntry.get()), int(caderaEntry.get())))
+buttonCalcular = Button(medidasFrame, text="Calcular talla", command=lambda: medidas(int(alturaEntry.get()),
+                                                                                     int(pechoEntry.get()),
+                                                                                     int(cinturaEntry.get()),
+                                                                                     int(caderaEntry.get())))
 equipMButton = Button(equipacionFrame, text="Equipación completa Mas", command=lambda: equipcompleta("masc"))
 equipFButton = Button(equipacionFrame, text="Equipación completa Fem", command=lambda: equipcompleta("fem"))
 limpiarEquipButton = Button(equipacionFrame, text="Limpiar", command=limpiarequip)
