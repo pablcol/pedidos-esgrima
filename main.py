@@ -15,27 +15,27 @@ equipacionFrame = LabelFrame(root, text="Selección equipación:", padx=5, pady=
 def medidasmasculino(altura, pecho, cintura, cadera):
     tallalabel = Label(medidasFrame, text="Talla:                  ")
     tallalabel.grid(row=5, column=0, sticky=W)
-    if 164 <= altura <= 170 and 82 <= pecho <= 88 and 70 <= cintura <= 74 and 88 <= cadera <= 92:
+    if 164 <= altura <= 170 and 82 <= pecho <= 88:
         talla = 44
-    elif 164 <= altura <= 170 and 89 <= pecho <= 92 and 75 <= cintura <= 78 and 93 <= cadera <= 96:
+    elif 164 <= altura <= 170 and 89 <= pecho <= 92:
         talla = 46
-    elif 171 <= altura <= 176 and 93 <= pecho <= 96 and 79 <= cintura <= 82 and 97 <= cadera <= 100:
+    elif 171 <= altura <= 176 and 93 <= pecho <= 96:
         talla = 48
-    elif 171 <= altura <= 176 and 97 <= pecho <= 100 and 83 <= cintura <= 86 and 101 <= cadera <= 104:
+    elif 171 <= altura <= 176 and 97 <= pecho <= 100:
         talla = 50
-    elif 177 <= altura <= 182 and 101 <= pecho <= 104 and 87 <= cintura <= 90 and 105 <= cadera <= 108:
+    elif 177 <= altura <= 182 and 101 <= pecho <= 104:
         talla = 52
-    elif 177 <= altura <= 182 and 105 <= pecho <= 108 and 91 <= cintura <= 94 and 109 <= cadera <= 112:
+    elif 177 <= altura <= 182 and 105 <= pecho <= 108:
         talla = 54
-    elif 183 <= altura <= 188 and 109 <= pecho <= 112 and 95 <= cintura <= 98 and 113 <= cadera <= 116:
+    elif 183 <= altura <= 188 and 109 <= pecho <= 112:
         talla = 56
-    elif 183 <= altura <= 188 and 113 <= pecho <= 116 and 99 <= cintura <= 102 and 117 <= cadera <= 120:
+    elif 183 <= altura <= 188 and 113 <= pecho <= 116:
         talla = 58
-    elif 183 <= altura <= 188 and 117 <= pecho <= 120 and 103 <= cintura <= 106 and 121 <= cadera <= 124:
+    elif 183 <= altura <= 188 and 117 <= pecho <= 120:
         talla = 60
-    elif 189 <= altura <= 194 and 121 <= pecho <= 124 and 107 <= cintura <= 110 and 125 <= cadera <= 128:
+    elif 189 <= altura <= 194 and 121 <= pecho <= 124:
         talla = 62
-    elif 195 <= altura <= 200 and 125 <= pecho <= 128 and 111 <= cintura <= 114 and 129 <= cadera <= 132:
+    elif 195 <= altura <= 200 and 125 <= pecho <= 128:
         talla = 64
     else: 
         talla = "Especial"
@@ -45,24 +45,39 @@ def medidasmasculino(altura, pecho, cintura, cadera):
 
 
 def equipcompleta(sexo):
-    caretaLabel.grid(row=1, column=0, sticky=W)
-    guanteLabel.grid(row=2, column=0, sticky=W)
-    chaquetillaLabel.grid(row=3, column=0, sticky=W)
-    espadalabel.grid(row=4, column=0, sticky=W)
-    pasanteLabel.grid(row=5, column=0, sticky=W)
+    caretacheck.select()
+    guantecheck.select()
+    chaquetillacheck.select()
+    espadacheck.select()
+    pasantecheck.select()
     if sexo == "fem":
-        protectorLabel.grid(row=6, column=0, sticky=W)
+        protectorcheck.select()
     return
 
 
 def limpiarequip():
-    caretaLabel.grid_remove()
-    guanteLabel.grid_remove()
-    chaquetillaLabel.grid_remove()
-    espadalabel.grid_remove()
-    pasanteLabel.grid_remove()
-    protectorLabel.grid_remove()
+    caretacheck.deselect()
+    guantecheck.deselect()
+    chaquetillacheck.deselect()
+    espadacheck.deselect()
+    pasantecheck.deselect()
+    protectorcheck.deselect()
     return
+
+
+# Create checkboxes
+caretavar = BooleanVar()
+caretacheck = Checkbutton(equipacionFrame, text="Careta", variable=caretavar)
+guantevar = BooleanVar()
+guantecheck = Checkbutton(equipacionFrame, text="Guante", variable=guantevar)
+chaquetillavar = BooleanVar()
+chaquetillacheck = Checkbutton(equipacionFrame, text="Chaquetilla", variable=chaquetillavar)
+espadavar = BooleanVar()
+espadacheck = Checkbutton(equipacionFrame, text="Espada", variable=espadavar)
+pasantevar = BooleanVar()
+pasantecheck = Checkbutton(equipacionFrame, text="Pasante", variable=pasantevar)
+protectorvar = BooleanVar()
+protectorcheck = Checkbutton(equipacionFrame, text="Protector femenino", variable=protectorvar)
 
 
 # Create label texts
@@ -70,7 +85,7 @@ alturaLabel = Label(medidasFrame, text="Altura en cm:")
 pechoLabel = Label(medidasFrame, text="Tamaño pecho en cm:")
 cinturaLabel = Label(medidasFrame, text="Tamaño cintura en cm:")
 caderaLabel = Label(medidasFrame, text="Tamaño cadera en cm:")
-
+'''
 equipLabel = Label(equipacionFrame, text="Equipación completa")
 caretaLabel = Label(equipacionFrame, text="Careta")
 guanteLabel = Label(equipacionFrame, text="Guante")
@@ -78,6 +93,13 @@ chaquetillaLabel = Label(equipacionFrame, text="Chaquetilla")
 espadalabel = Label(equipacionFrame, text="Espada")
 pasanteLabel = Label(equipacionFrame, text="Pasante")
 protectorLabel = Label(equipacionFrame, text="Protector femenino")
+'''
+caretacheck.grid(row=1, column=0, sticky=W)
+guantecheck.grid(row=2, column=0, sticky=W)
+chaquetillacheck.grid(row=3, column=0, sticky=W)
+espadacheck.grid(row=4, column=0, sticky=W)
+pasantecheck.grid(row=5, column=0, sticky=W)
+protectorcheck.grid(row=6, column=0, sticky=W)
 
 # Define entries
 alturaEntry = Entry(medidasFrame, width=15)
@@ -120,6 +142,9 @@ limpiarEquipButton.grid(row=7, column=0)
 # Frames
 medidasFrame.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
 equipacionFrame.grid(row=0, column=1, sticky=W, padx=10, pady=10)
+
+# Buttons
+Button(root, text="Cerrar", command=root.quit).grid(row=3, column=3)
 
 # Initialize main loop and app
 root.mainloop()
