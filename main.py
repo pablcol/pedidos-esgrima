@@ -85,15 +85,7 @@ alturaLabel = Label(medidasFrame, text="Altura en cm:")
 pechoLabel = Label(medidasFrame, text="Tamaño pecho en cm:")
 cinturaLabel = Label(medidasFrame, text="Tamaño cintura en cm:")
 caderaLabel = Label(medidasFrame, text="Tamaño cadera en cm:")
-'''
-equipLabel = Label(equipacionFrame, text="Equipación completa")
-caretaLabel = Label(equipacionFrame, text="Careta")
-guanteLabel = Label(equipacionFrame, text="Guante")
-chaquetillaLabel = Label(equipacionFrame, text="Chaquetilla")
-espadalabel = Label(equipacionFrame, text="Espada")
-pasanteLabel = Label(equipacionFrame, text="Pasante")
-protectorLabel = Label(equipacionFrame, text="Protector femenino")
-'''
+
 caretacheck.grid(row=1, column=0, sticky=W)
 guantecheck.grid(row=2, column=0, sticky=W)
 chaquetillacheck.grid(row=3, column=0, sticky=W)
