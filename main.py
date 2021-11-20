@@ -15,23 +15,23 @@ equipacionFrame = LabelFrame(root, text="Selección equipación:", padx=5, pady=
 def medidasmasculino(altura, pecho, cintura, cadera):
     tallalabel = Label(medidasFrame, text="Talla:                  ")
     tallalabel.grid(row=5, column=0, sticky=W)
-    if 164 <= altura <= 170 and 82 <= pecho <= 88:
+    if 164 <= altura <= 170: # and 82 <= pecho <= 88:
         talla = 44
-    elif 164 <= altura <= 170 and 89 <= pecho <= 92:
+    elif 164 <= altura <= 170: # and 89 <= pecho <= 92:
         talla = 46
-    elif 171 <= altura <= 176 and 93 <= pecho <= 96:
+    elif 171 <= altura <= 176: # and 93 <= pecho <= 96:
         talla = 48
-    elif 171 <= altura <= 176 and 97 <= pecho <= 100:
+    elif 171 <= altura <= 176: # and 97 <= pecho <= 100:
         talla = 50
-    elif 177 <= altura <= 182 and 101 <= pecho <= 104:
+    elif 177 <= altura <= 182: # and 101 <= pecho <= 104:
         talla = 52
-    elif 177 <= altura <= 182 and 105 <= pecho <= 108:
+    elif 177 <= altura <= 182: # and 105 <= pecho <= 108:
         talla = 54
-    elif 183 <= altura <= 188 and 109 <= pecho <= 112:
+    elif 183 <= altura <= 188: # and 109 <= pecho <= 112:
         talla = 56
-    elif 183 <= altura <= 188 and 113 <= pecho <= 116:
+    elif 183 <= altura <= 188: # and 113 <= pecho <= 116:
         talla = 58
-    elif 183 <= altura <= 188 and 117 <= pecho <= 120:
+    elif 183 <= altura <= 188: # and 117 <= pecho <= 120:
         talla = 60
     elif 189 <= altura <= 194 and 121 <= pecho <= 124:
         talla = 62
