@@ -44,6 +44,38 @@ def medidasmasculino(altura, pecho, cintura, cadera):
     return
 
 
+def medidasfemenino(altura, pecho, cintura, cadera):
+    tallalabel = Label(medidasFrame, text="Talla:                  ")
+    tallalabel.grid(row=5, column=0, sticky=W)
+    if 164 <= altura <= 170 and 82 <= pecho <= 88:
+        talla = 44
+    elif 164 <= altura <= 170 and 89 <= pecho <= 92:
+        talla = 46
+    elif 171 <= altura <= 176 and 93 <= pecho <= 96:
+        talla = 48
+    elif 171 <= altura <= 176 and 97 <= pecho <= 100:
+        talla = 50
+    elif 177 <= altura <= 182 and 101 <= pecho <= 104:
+        talla = 52
+    elif 177 <= altura <= 182 and 105 <= pecho <= 108:
+        talla = 54
+    elif 183 <= altura <= 188 and 109 <= pecho <= 112:
+        talla = 56
+    elif 183 <= altura <= 188 and 113 <= pecho <= 116:
+        talla = 58
+    elif 183 <= altura <= 188 and 117 <= pecho <= 120:
+        talla = 60
+    elif 189 <= altura <= 194 and 121 <= pecho <= 124:
+        talla = 62
+    elif 195 <= altura <= 200 and 125 <= pecho <= 128:
+        talla = 64
+    else:
+        talla = "Especial"
+    tallalabel = Label(medidasFrame, text="Talla: " + str(talla))
+    tallalabel.grid(row=5, column=0, sticky=W)
+    return
+
+
 def equipcompleta(sexo):
     caretacheck.select()
     guantecheck.select()
@@ -100,14 +132,18 @@ cinturaEntry = Entry(medidasFrame, width=15)
 caderaEntry = Entry(medidasFrame, width=15)
 
 # Define buttons
-buttonCalcular = Button(medidasFrame, text="Calcular talla", command=lambda: medidasmasculino(int(alturaEntry.get()),
+buttonCalcularMasc = Button(medidasFrame, text="Calcular talla masculina", width=20, command=lambda: medidasmasculino(int(alturaEntry.get()),
                                                                                               int(pechoEntry.get()),
                                                                                               int(cinturaEntry.get()),
                                                                                               int(caderaEntry.get())))
-equipMButton = Button(equipacionFrame, text="Equipación completa Mas", command=lambda: equipcompleta("masc"))
-equipFButton = Button(equipacionFrame, text="Equipación completa Fem", command=lambda: equipcompleta("fem"))
-limpiarEquipButton = Button(equipacionFrame, text="Limpiar", command=limpiarequip)
-
+buttonCalcularFem = Button(medidasFrame, text="Calcular talla femenina", width=20, command=lambda: medidasfemenino(int(alturaEntry.get()),
+                                                                                              int(pechoEntry.get()),
+                                                                                              int(cinturaEntry.get()),
+                                                                                              int(caderaEntry.get())))
+equipMButton = Button(equipacionFrame, text="Equipación completa Mas", width=20, command=lambda: equipcompleta("masc"))
+equipFButton = Button(equipacionFrame, text="Equipación completa Fem", width=20, command=lambda: equipcompleta("fem"))
+limpiarEquipButton = Button(equipacionFrame, text="Limpiar", width=15, command=limpiarequip)
+cerrar = Button(root, text="Cerrar", width=15, command=root.quit)
 # Put elements on app
 
 # Medidas
@@ -124,7 +160,8 @@ caderaLabel.grid(row=4, column=0, sticky=W)
 caderaEntry.grid(row=4, column=2)
 
 # tallaLabel.grid(row=5, column=0, sticky=W)
-buttonCalcular.grid(row=5, column=2)
+buttonCalcularMasc.grid(row=5, column=2)
+buttonCalcularFem.grid(row=6, column=2)
 
 # Equipaciones
 equipMButton.grid(row=0, column=0)
@@ -134,9 +171,7 @@ limpiarEquipButton.grid(row=7, column=0)
 # Frames
 medidasFrame.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
 equipacionFrame.grid(row=0, column=1, sticky=W, padx=10, pady=10)
-
-# Buttons
-Button(root, text="Cerrar", command=root.quit).grid(row=3, column=3)
+cerrar.grid(row=3, column=2, sticky=E)
 
 # Initialize main loop and app
 root.mainloop()
