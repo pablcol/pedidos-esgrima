@@ -84,6 +84,8 @@ def equipcompleta(sexo):
     pasantecheck.select()
     if sexo == "fem":
         protectorcheck.select()
+    else:
+        protectorcheck.deselect()
     return
 
 
