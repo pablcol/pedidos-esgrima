@@ -12,39 +12,31 @@ equipacionFrame = LabelFrame(root, text="Selección equipación:", padx=5, pady=
 
 
 # Define functions
-def medidasmasculino(altura, pecho):
+def medidasfemenino(altura, pecho):
     tallalabel = Label(medidasFrame, text="Talla:                  ")
     tallalabel.grid(row=5, column=0, sticky=W)
-    if 164 <= altura <= 170 and 82 <= pecho <= 88:
+    if 158 <= altura <= 164 and 82 <= pecho <= 86:
+        talla = 36
+    elif 158 <= altura <= 164 and 87 <= pecho <= 90:
+        talla = 38
+    elif 165 <= altura <= 170 and 91 <= pecho <= 94:
+        talla = 40
+    elif 165 <= altura <= 170 and 95 <= pecho <= 98:
+        talla = 42
+    elif 171 <= altura <= 176 and 99 <= pecho <= 102:
         talla = 44
-    elif 164 <= altura <= 170 and 89 <= pecho <= 92:
+    elif 171 <= altura <= 176 and 103 <= pecho <= 106:
         talla = 46
-    elif 171 <= altura <= 176 and 93 <= pecho <= 96:
-        talla = 48
-    elif 171 <= altura <= 176 and 97 <= pecho <= 100:
-        talla = 50
-    elif 177 <= altura <= 182 and 101 <= pecho <= 104:
-        talla = 52
-    elif 177 <= altura <= 182 and 105 <= pecho <= 108:
-        talla = 54
-    elif 183 <= altura <= 188 and 109 <= pecho <= 112:
-        talla = 56
-    elif 183 <= altura <= 188 and 113 <= pecho <= 116:
-        talla = 58
-    elif 183 <= altura <= 188 and 117 <= pecho <= 120:
-        talla = 60
-    elif 189 <= altura <= 194 and 121 <= pecho <= 124:
-        talla = 62
-    elif 195 <= altura <= 200 and 125 <= pecho <= 128:
-        talla = 64
-    else: 
+    elif 177 <= altura <= 182 and 107 <= pecho <= 110:
+        talla = 46
+    else:
         talla = "Especial"
     tallalabel = Label(medidasFrame, text="Talla: " + str(talla))
     tallalabel.grid(row=5, column=0, sticky=W)
     return
 
 
-def medidasfemenino(altura, pecho):
+def medidasmasculino(altura, pecho):
     tallalabel = Label(medidasFrame, text="Talla:                  ")
     tallalabel.grid(row=5, column=0, sticky=W)
     if 164 <= altura <= 170 and 82 <= pecho <= 88:
@@ -149,6 +141,7 @@ equipMButton = Button(equipacionFrame, text="Equipación completa Mas", width=20
 equipFButton = Button(equipacionFrame, text="Equipación completa Fem", width=20, command=lambda: equipcompleta("fem"))
 limpiarEquipButton = Button(equipacionFrame, text="Limpiar", width=15, command=limpiarequip)
 cerrar = Button(root, text="Cerrar", width=15, command=root.quit)
+
 # Put elements on app
 
 # Medidas
