@@ -6,12 +6,12 @@ root = Tk()
 root.title("Pedidos Grant Esgrima")
 # root.iconbitmap("CEApng.ico")
 
-# Define frames
+# Define main frames of the app, one for sizes, one for equipment
 medidasFrame = LabelFrame(root, text="Medidas tirador/a:", padx=5, pady=5)
 equipacionFrame = LabelFrame(root, text="Selección equipación:", padx=5, pady=5)
 
 
-# Define functions
+# These functions are used for calculating the sizes, with distinction between female and male genders
 def medidasfemenino(altura, pecho):
     tallalabel = Label(medidasFrame, text="Talla:                  ")
     tallalabel.grid(row=5, column=0, sticky=W)
@@ -68,6 +68,8 @@ def medidasmasculino(altura, pecho):
     return
 
 
+# These functions are used to automatically check and/or uncheck the equipment
+
 def equipcompleta(sexo):
     caretacheck.select()
     guantecheck.select()
@@ -118,7 +120,7 @@ espadacheck.grid(row=4, column=0, sticky=W)
 pasantecheck.grid(row=5, column=0, sticky=W)
 protectorcheck.grid(row=6, column=0, sticky=W)
 
-# Define entries
+# Define entries for the sizes, in cm
 alturaEntry = Entry(medidasFrame, width=15)
 pechoEntry = Entry(medidasFrame, width=15)
 cinturaEntry = Entry(medidasFrame, width=15)
@@ -144,7 +146,7 @@ cerrar = Button(root, text="Cerrar", width=15, command=root.quit)
 
 # Put elements on app
 
-# Medidas
+# first the sizes
 alturaLabel.grid(row=1, column=0, sticky=W)
 alturaEntry.grid(row=1, column=2)
 
@@ -157,19 +159,18 @@ cinturaEntry.grid(row=3, column=2)
 caderaLabel.grid(row=4, column=0, sticky=W)
 caderaEntry.grid(row=4, column=2)
 
-# tallaLabel.grid(row=5, column=0, sticky=W)
 buttonCalcularMasc.grid(row=5, column=2)
 buttonCalcularFem.grid(row=6, column=2)
 
-# Equipaciones
+# then the equipment
 equipMButton.grid(row=0, column=0)
 equipFButton.grid(row=0, column=1)
 limpiarEquipButton.grid(row=7, column=0)
 
-# Frames
+# then initialize and put the frames up
 medidasFrame.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
 equipacionFrame.grid(row=0, column=1, sticky=W, padx=10, pady=10)
-cerrar.grid(row=3, column=2, sticky=E)
+cerrar.grid(row=3, column=1, sticky=E)
 
-# Initialize main loop and app
+# Initialize main loop and run app
 root.mainloop()
