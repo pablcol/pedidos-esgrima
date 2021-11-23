@@ -1,14 +1,16 @@
 from tkinter import *
 from tkinter import Tk
+from tkinter import ttk
 
 # Initialize tkinter and give it a page name
 root = Tk()
 root.title("Pedidos Grant Esgrima")
 # root.iconbitmap("CEApng.ico")
 
-# Define main frames of the app, one for sizes, one for equipment
+# Define main frames of the app, one for sizes, one for equipment, one for summary
 medidasFrame = LabelFrame(root, text="Medidas tirador/a:", padx=5, pady=5)
 equipacionFrame = LabelFrame(root, text="Selección equipación:", padx=5, pady=5)
+summaryFrame = LabelFrame(root, text="Resumen pedido:", padx=5, pady=5)
 
 
 # These functions are used for calculating the sizes, with distinction between female and male genders
@@ -93,6 +95,22 @@ def limpiarequip():
     return
 
 
+# This function checks the state of the checkbox and outputs a summary text
+def summary(careta, guante, chaquetilla, espada, pasante, protector):
+    if careta == True:
+        Label(summaryFrame, text="Careta").grid(row=1, column=0, sticky=W)
+    if guante == True:
+        Label(summaryFrame, text="Guante").grid(row=2, column=0, sticky=W)
+    if chaquetilla == True:
+        Label(summaryFrame, text="Chaquetilla").grid(row=3, column=0, sticky=W)
+    if espada == True:
+        Label(summaryFrame, text="Espada").grid(row=4, column=0, sticky=W)
+    if pasante == True:
+        Label(summaryFrame, text="Pasante").grid(row=5, column=0, sticky=W)
+    if protector == True:
+        Label(summaryFrame, text="Protector").grid(row=6, column=0, sticky=W)
+    return
+
 # Create checkboxes
 caretavar = BooleanVar()
 caretacheck = Checkbutton(equipacionFrame, text="Careta", variable=caretavar)
@@ -112,6 +130,8 @@ alturaLabel = Label(medidasFrame, text="Altura en cm:")
 pechoLabel = Label(medidasFrame, text="Tamaño pecho en cm:")
 cinturaLabel = Label(medidasFrame, text="Tamaño cintura en cm:")
 caderaLabel = Label(medidasFrame, text="Tamaño cadera en cm:")
+summaryLabel = Label(summaryFrame, text="Equipación | ")
+summaryTalla = Label(summaryFrame, text="Talla:")
 
 caretacheck.grid(row=1, column=0, sticky=W)
 guantecheck.grid(row=2, column=0, sticky=W)
@@ -141,11 +161,18 @@ buttonCalcularFem = Button(medidasFrame, text="Calcular talla femenina", width=2
                                                                                             ))
 equipMButton = Button(equipacionFrame, text="Equipación completa Mas", width=20, command=lambda: equipcompleta("masc"))
 equipFButton = Button(equipacionFrame, text="Equipación completa Fem", width=20, command=lambda: equipcompleta("fem"))
-limpiarEquipButton = Button(equipacionFrame, text="Limpiar", width=15, command=limpiarequip)
+limpiarEquipButton = Button(equipacionFrame, text="Limpiar", width=20, command=limpiarequip)
+resumenButton = Button(equipacionFrame, text="Resumen equipación", width=20, command=lambda: summary(
+                                                                                            caretavar.get(),
+                                                                                            guantevar.get(),
+                                                                                            chaquetillavar.get(),
+                                                                                            espadavar.get(),
+                                                                                            pasantevar.get(),
+                                                                                            protectorvar.get()
+                                                                                            ))
 cerrar = Button(root, text="Cerrar", width=15, command=root.quit)
 
 # Put elements on app
-
 # first the sizes
 alturaLabel.grid(row=1, column=0, sticky=W)
 alturaEntry.grid(row=1, column=2)
@@ -166,10 +193,16 @@ buttonCalcularFem.grid(row=6, column=2)
 equipMButton.grid(row=0, column=0)
 equipFButton.grid(row=0, column=1)
 limpiarEquipButton.grid(row=7, column=0)
+resumenButton.grid(row=7, column=1)
+
+# then the summary text
+summaryLabel.grid(row=0, column=0)
+summaryTalla.grid(row=0, column=1)
 
 # then initialize and put the frames up
 medidasFrame.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
 equipacionFrame.grid(row=0, column=1, sticky=W, padx=10, pady=10)
+summaryFrame.grid(row=1, column=0, sticky= W, padx=10, pady=10)
 cerrar.grid(row=3, column=1, sticky=E)
 
 # Initialize main loop and run app
