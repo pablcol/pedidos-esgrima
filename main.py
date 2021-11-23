@@ -7,10 +7,11 @@ root = Tk()
 root.title("Pedidos Grant Esgrima")
 # root.iconbitmap("CEApng.ico")
 
-# Define main frames of the app, one for sizes, one for equipment, one for summary
+# Define main frames of the app, one for sizes, one for equipment, one for summary, one for gloves
 medidasFrame = LabelFrame(root, text="Medidas tirador/a:", padx=5, pady=5)
 equipacionFrame = LabelFrame(root, text="Selección equipación:", padx=5, pady=5)
 summaryFrame = LabelFrame(root, text="Resumen pedido:", padx=5, pady=5)
+guantesFrame = LabelFrame(root, text="Guantes:", padx=5, pady=5)
 
 
 # These functions are used for calculating the sizes, with distinction between female and male genders
@@ -71,7 +72,6 @@ def medidasmasculino(altura, pecho):
 
 
 # These functions are used to automatically check and/or uncheck the equipment
-
 def equipcompleta(sexo):
     caretacheck.select()
     guantecheck.select()
@@ -111,6 +111,21 @@ def summary(careta, guante, chaquetilla, espada, pasante, protector):
         protectorLabel.grid(row=6, column=0, sticky=W)
     return
 
+# This function outputs the laterality of the equipment
+def lateralidad(late):
+    if late == "zurdo":
+        lateLabel1 = Label(summaryFrame, text="Zurdo")
+        lateLabel2 = Label(summaryFrame, text="Zurdo")
+        lateLabel3 = Label(summaryFrame, text="Zurdo")
+    elif late == 'diestro':
+        lateLabel1 = Label(summaryFrame, text="Diestro")
+        lateLabel2 = Label(summaryFrame, text="Diestro")
+        lateLabel3 = Label(summaryFrame, text="Diestro")
+    lateLabel1.grid(row=2, column=2)
+    lateLabel2.grid(row=3, column=2)
+    lateLabel3.grid(row=4, column=2)
+    return
+
 
 # This function deletes the summary list
 def limpiarresumen():
@@ -122,7 +137,8 @@ def limpiarresumen():
     protectorLabel.grid_forget()
     return
 
-# Create checkboxes
+
+# Create checkboxes for equipment
 caretavar = BooleanVar()
 caretacheck = Checkbutton(equipacionFrame, text="Careta", variable=caretavar)
 guantevar = BooleanVar()
@@ -143,8 +159,9 @@ cinturaLabel = Label(medidasFrame, text="Tamaño cintura en cm:")
 caderaLabel = Label(medidasFrame, text="Tamaño cadera en cm:")
 
 # Create labels for summary
-summaryLabel = Label(summaryFrame, text="Equipación | ")
-summaryTalla = Label(summaryFrame, text="Talla:")
+summaryEquipLabel = Label(summaryFrame, text="Equipación | ")
+summaryTallaLabel = Label(summaryFrame, text="Talla | ")
+summaryLateLabel = Label(summaryFrame, text="Lateralidad")
 caretaLabel = Label(summaryFrame, text="Careta")
 guanteLabel = Label(summaryFrame, text="Guante")
 chaquetillaLabel = Label(summaryFrame, text="Chaquetilla")
@@ -190,6 +207,7 @@ resumenButton = Button(equipacionFrame, text="Resumen equipación", width=20, co
                                                                                             protectorvar.get()
                                                                                             ))
 limpiarResumenButton = Button(root, text="Limpiar pedido", command=limpiarresumen)
+lateButton = Button(root, text="Lateralidad", command=lambda: lateralidad("zurdo"))
 cerrar = Button(root, text="Cerrar", width=15, command=root.quit)
 
 # Put elements on app
@@ -216,13 +234,15 @@ limpiarEquipButton.grid(row=7, column=0)
 resumenButton.grid(row=7, column=1)
 
 # then the summary text
-summaryLabel.grid(row=0, column=0)
-summaryTalla.grid(row=0, column=1)
+summaryEquipLabel.grid(row=0, column=0)
+summaryTallaLabel.grid(row=0, column=1)
+summaryLateLabel.grid(row=0, column=2)
 
 # then initialize and put the frames up
 medidasFrame.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
 equipacionFrame.grid(row=0, column=1, sticky=W, padx=10, pady=10)
 summaryFrame.grid(row=1, column=0, sticky= W, padx=10, pady=10)
+lateButton.grid(row=1, column=3)
 limpiarResumenButton.grid(row=3, column=1)
 cerrar.grid(row=3, column=2, sticky=E)
 
