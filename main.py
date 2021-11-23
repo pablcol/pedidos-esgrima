@@ -97,33 +97,37 @@ def limpiarequip():
 
 # This function checks the state of the checkbox and outputs a summary text
 def summary(careta, guante, chaquetilla, espada, pasante, protector):
-    if careta == True:
+    if careta:
         caretaLabel.grid(row=1, column=0, sticky=W)
-    if guante == True:
+    if guante:
         guanteLabel.grid(row=2, column=0, sticky=W)
-    if chaquetilla == True:
+    if chaquetilla:
         chaquetillaLabel.grid(row=3, column=0, sticky=W)
-    if espada == True:
+    if espada:
         espadaLabel.grid(row=4, column=0, sticky=W)
-    if pasante == True:
+    if pasante:
         pasanteLabel.grid(row=5, column=0, sticky=W)
-    if protector == True:
+    if protector:
         protectorLabel.grid(row=6, column=0, sticky=W)
     return
 
+
 # This function outputs the laterality of the equipment
 def lateralidad(late):
+    latelabel1 = " "
+    latelabel2 = " "
+    latelabel3 = " "
     if late == "zurdo":
-        lateLabel1 = Label(summaryFrame, text="Zurdo")
-        lateLabel2 = Label(summaryFrame, text="Zurdo")
-        lateLabel3 = Label(summaryFrame, text="Zurdo")
+        latelabel1 = Label(summaryFrame, text="Zurdo")
+        latelabel2 = Label(summaryFrame, text="Zurdo")
+        latelabel3 = Label(summaryFrame, text="Zurdo")
     elif late == 'diestro':
-        lateLabel1 = Label(summaryFrame, text="Diestro")
-        lateLabel2 = Label(summaryFrame, text="Diestro")
-        lateLabel3 = Label(summaryFrame, text="Diestro")
-    lateLabel1.grid(row=2, column=2)
-    lateLabel2.grid(row=3, column=2)
-    lateLabel3.grid(row=4, column=2)
+        latelabel1 = Label(summaryFrame, text="Diestro")
+        latelabel2 = Label(summaryFrame, text="Diestro")
+        latelabel3 = Label(summaryFrame, text="Diestro")
+    latelabel1.grid(row=2, column=2)
+    latelabel2.grid(row=3, column=2)
+    latelabel3.grid(row=4, column=2)
     return
 
 
@@ -241,7 +245,7 @@ summaryLateLabel.grid(row=0, column=2)
 # then initialize and put the frames up
 medidasFrame.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
 equipacionFrame.grid(row=0, column=1, sticky=W, padx=10, pady=10)
-summaryFrame.grid(row=1, column=0, sticky= W, padx=10, pady=10)
+summaryFrame.grid(row=1, column=0, sticky=W, padx=10, pady=10)
 lateButton.grid(row=1, column=3)
 limpiarResumenButton.grid(row=3, column=1)
 cerrar.grid(row=3, column=2, sticky=E)
