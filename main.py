@@ -98,17 +98,28 @@ def limpiarequip():
 # This function checks the state of the checkbox and outputs a summary text
 def summary(careta, guante, chaquetilla, espada, pasante, protector):
     if careta == True:
-        Label(summaryFrame, text="Careta").grid(row=1, column=0, sticky=W)
+        caretaLabel.grid(row=1, column=0, sticky=W)
     if guante == True:
-        Label(summaryFrame, text="Guante").grid(row=2, column=0, sticky=W)
+        guanteLabel.grid(row=2, column=0, sticky=W)
     if chaquetilla == True:
-        Label(summaryFrame, text="Chaquetilla").grid(row=3, column=0, sticky=W)
+        chaquetillaLabel.grid(row=3, column=0, sticky=W)
     if espada == True:
-        Label(summaryFrame, text="Espada").grid(row=4, column=0, sticky=W)
+        espadaLabel.grid(row=4, column=0, sticky=W)
     if pasante == True:
-        Label(summaryFrame, text="Pasante").grid(row=5, column=0, sticky=W)
+        pasanteLabel.grid(row=5, column=0, sticky=W)
     if protector == True:
-        Label(summaryFrame, text="Protector").grid(row=6, column=0, sticky=W)
+        protectorLabel.grid(row=6, column=0, sticky=W)
+    return
+
+
+# This function deletes the summary list
+def limpiarresumen():
+    caretaLabel.grid_forget()
+    guanteLabel.grid_forget()
+    chaquetillaLabel.grid_forget()
+    espadaLabel.grid_forget()
+    pasanteLabel.grid_forget()
+    protectorLabel.grid_forget()
     return
 
 # Create checkboxes
@@ -125,13 +136,21 @@ pasantecheck = Checkbutton(equipacionFrame, text="Pasante", variable=pasantevar)
 protectorvar = BooleanVar()
 protectorcheck = Checkbutton(equipacionFrame, text="Protector femenino", variable=protectorvar)
 
-# Create label texts
+# Create labels for mesurements
 alturaLabel = Label(medidasFrame, text="Altura en cm:")
 pechoLabel = Label(medidasFrame, text="Tamaño pecho en cm:")
 cinturaLabel = Label(medidasFrame, text="Tamaño cintura en cm:")
 caderaLabel = Label(medidasFrame, text="Tamaño cadera en cm:")
+
+# Create labels for summary
 summaryLabel = Label(summaryFrame, text="Equipación | ")
 summaryTalla = Label(summaryFrame, text="Talla:")
+caretaLabel = Label(summaryFrame, text="Careta")
+guanteLabel = Label(summaryFrame, text="Guante")
+chaquetillaLabel = Label(summaryFrame, text="Chaquetilla")
+espadaLabel = Label(summaryFrame, text="Espada")
+pasanteLabel = Label(summaryFrame, text="Pasante")
+protectorLabel = Label(summaryFrame, text="Protector")
 
 caretacheck.grid(row=1, column=0, sticky=W)
 guantecheck.grid(row=2, column=0, sticky=W)
@@ -170,6 +189,7 @@ resumenButton = Button(equipacionFrame, text="Resumen equipación", width=20, co
                                                                                             pasantevar.get(),
                                                                                             protectorvar.get()
                                                                                             ))
+limpiarResumenButton = Button(root, text="Limpiar pedido", command=limpiarresumen)
 cerrar = Button(root, text="Cerrar", width=15, command=root.quit)
 
 # Put elements on app
@@ -203,7 +223,8 @@ summaryTalla.grid(row=0, column=1)
 medidasFrame.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
 equipacionFrame.grid(row=0, column=1, sticky=W, padx=10, pady=10)
 summaryFrame.grid(row=1, column=0, sticky= W, padx=10, pady=10)
-cerrar.grid(row=3, column=1, sticky=E)
+limpiarResumenButton.grid(row=3, column=1)
+cerrar.grid(row=3, column=2, sticky=E)
 
 # Initialize main loop and run app
 root.mainloop()
