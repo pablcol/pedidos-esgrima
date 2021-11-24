@@ -313,7 +313,7 @@ medidasFrame.grid(row=1, column=0, sticky=NW, padx=10, pady=10)
 guantesFrame.grid(row=1, column=1, sticky=NW, padx=10, pady=10)
 equipacionFrame.grid(row=2, column=0, sticky=NW, padx=10, pady=10)
 summaryFrame.grid(row=2, column=1, sticky=NW, padx=10, pady=10)
-cerrar.grid(row=3, column=2, sticky=E)
+cerrar.grid(row=3, column=1, sticky=E)
 
 # Initialize main loop and run app
 root.mainloop()
