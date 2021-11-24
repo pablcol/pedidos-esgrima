@@ -2,16 +2,19 @@ from tkinter import *
 from tkinter import Tk
 from tkinter import ttk
 
-# Initialize tkinter and give it a page name
+# Initialize tkinter, give it a page name and a max size
 root = Tk()
 root.title("Pedidos Grant Esgrima")
+root.geometry("1000x600")
 # root.iconbitmap("CEApng.ico")
 
 # Define main frames of the app, one for sizes, one for equipment, one for summary, one for gloves
-medidasFrame = LabelFrame(root, text="Medidas tirador/a:", padx=5, pady=5)
-equipacionFrame = LabelFrame(root, text="Selección equipación:", padx=5, pady=5)
-summaryFrame = LabelFrame(root, text="Resumen pedido:", padx=5, pady=5)
-guantesFrame = LabelFrame(root, text="Guantes:", padx=5, pady=5)
+nombreFrame = LabelFrame(root, text="Nombre tirador/a: ", padx=5, pady=5, height="500")
+medidasFrame = LabelFrame(root, text="Medidas tirador/a: ", padx=5, pady=5)
+equipacionFrame = LabelFrame(root, text="Selección equipación: ", padx=5, pady=5)
+summaryFrame = LabelFrame(root, text="Resumen pedido: ", padx=5, pady=5)
+lateralidadFrame = LabelFrame(root, text="Lateralidad: ", padx=5, pady=5)
+guantesFrame = LabelFrame(root, text="Guantes: ", padx=5, pady=5)
 
 
 # These functions are used for calculating the sizes, with distinction between female and male genders
@@ -96,39 +99,31 @@ def limpiarequip():
 
 
 # This function checks the state of the checkbox and outputs a summary text
-def summary(careta, guante, chaquetilla, espada, pasante, protector):
+def summary(careta, guante, chaquetilla, espada, pasante, protector, diestro, zurdo):
     if careta:
         caretaLabel.grid(row=1, column=0, sticky=W)
-    if guante:
+    if guante and diestro:
         guanteLabel.grid(row=2, column=0, sticky=W)
-    if chaquetilla:
+        diestro1Label.grid(row=2, column=2)
+    elif guante and zurdo:
+        guanteLabel.grid(row=2, column=0, sticky=W)
+        zurdo1Label.grid(row=2, column=2)
+    if chaquetilla and diestro:
         chaquetillaLabel.grid(row=3, column=0, sticky=W)
-    if espada:
+        diestro2Label.grid(row=3, column=2)
+    elif chaquetilla and zurdo:
+        chaquetillaLabel.grid(row=3, column=0, sticky=W)
+        zurdo2Label.grid(row=3, column=2)
+    if espada and diestro:
         espadaLabel.grid(row=4, column=0, sticky=W)
+        diestro3Label.grid(row=4, column=2)
+    elif espada and zurdo:
+        espadaLabel.grid(row=4, column=0, sticky=W)
+        zurdo3Label.grid(row=4, column=2)
     if pasante:
         pasanteLabel.grid(row=5, column=0, sticky=W)
     if protector:
         protectorLabel.grid(row=6, column=0, sticky=W)
-    return
-
-
-# This function outputs the laterality of the equipment
-def lateralidad(late):
-    latelabel1 = " "
-    latelabel2 = " "
-    latelabel3 = " "
-    if late == "zurdo":
-        latelabel1 = Label(summaryFrame, text="Zurdo")
-        latelabel2 = Label(summaryFrame, text="Zurdo")
-        latelabel3 = Label(summaryFrame, text="Zurdo")
-    elif late == 'diestro':
-        latelabel1 = Label(summaryFrame, text="Diestro")
-        latelabel2 = Label(summaryFrame, text="Diestro")
-        latelabel3 = Label(summaryFrame, text="Diestro")
-    latelabel1.grid(row=2, column=2)
-    latelabel2.grid(row=3, column=2)
-    latelabel3.grid(row=4, column=2)
-    return
 
 
 # This function deletes the summary list
@@ -139,8 +134,24 @@ def limpiarresumen():
     espadaLabel.grid_forget()
     pasanteLabel.grid_forget()
     protectorLabel.grid_forget()
+    diestro1Label.grid_forget()
+    diestro2Label.grid_forget()
+    diestro3Label.grid_forget()
+    zurdo1Label.grid_forget()
     return
 
+
+# Create entry for name
+nombreLabel = Label(nombreFrame, text="Nombre: ")
+nombreEntry = Entry(nombreFrame, width=30)
+apellidosLabel = Label(nombreFrame, text="Apellidos: ")
+apellidosEntry = Entry(nombreFrame, width=30)
+
+# Create checkboxes for laterality
+diestrovar = BooleanVar()
+diestrocheck = Checkbutton(lateralidadFrame, text="Diestro", variable=diestrovar)
+zurdovar = BooleanVar()
+zurdocheck = Checkbutton(lateralidadFrame, text="Zurdo", variable=zurdovar)
 
 # Create checkboxes for equipment
 caretavar = BooleanVar()
@@ -172,13 +183,12 @@ chaquetillaLabel = Label(summaryFrame, text="Chaquetilla")
 espadaLabel = Label(summaryFrame, text="Espada")
 pasanteLabel = Label(summaryFrame, text="Pasante")
 protectorLabel = Label(summaryFrame, text="Protector")
-
-caretacheck.grid(row=1, column=0, sticky=W)
-guantecheck.grid(row=2, column=0, sticky=W)
-chaquetillacheck.grid(row=3, column=0, sticky=W)
-espadacheck.grid(row=4, column=0, sticky=W)
-pasantecheck.grid(row=5, column=0, sticky=W)
-protectorcheck.grid(row=6, column=0, sticky=W)
+diestro1Label = Label(summaryFrame, text="Diestro")
+diestro2Label = Label(summaryFrame, text="Diestro")
+diestro3Label = Label(summaryFrame, text="Diestro")
+zurdo1Label = Label(summaryFrame, text="Zurdo")
+zurdo2Label = Label(summaryFrame, text="Zurdo")
+zurdo3Label = Label(summaryFrame, text="Zurdo")
 
 # Define entries for the sizes, in cm
 alturaEntry = Entry(medidasFrame, width=15)
@@ -208,14 +218,25 @@ resumenButton = Button(equipacionFrame, text="Resumen equipación", width=20, co
                                                                                             chaquetillavar.get(),
                                                                                             espadavar.get(),
                                                                                             pasantevar.get(),
-                                                                                            protectorvar.get()
+                                                                                            protectorvar.get(),
+                                                                                            diestrovar.get(),
+                                                                                            zurdovar.get()
                                                                                             ))
 limpiarResumenButton = Button(root, text="Limpiar pedido", command=limpiarresumen)
-lateButton = Button(root, text="Lateralidad", command=lambda: lateralidad("zurdo"))
 cerrar = Button(root, text="Cerrar", width=15, command=root.quit)
 
 # Put elements on app
-# first the sizes
+# Frist the name bar
+nombreLabel.grid(row=0, column=0, sticky=NW)
+nombreEntry.grid(row=0, column=1, sticky=W)
+apellidosLabel.grid(row=1, column=0, sticky=NW)
+apellidosEntry.grid(row=1, column=1, sticky=W)
+
+# then the checkboxes for laterality
+diestrocheck.grid(row=0, column=0, sticky=W)
+zurdocheck.grid(row=1, column=0, sticky=W)
+
+# then the sizes
 alturaLabel.grid(row=1, column=0, sticky=W)
 alturaEntry.grid(row=1, column=2)
 
@@ -242,11 +263,20 @@ summaryEquipLabel.grid(row=0, column=0)
 summaryTallaLabel.grid(row=0, column=1)
 summaryLateLabel.grid(row=0, column=2)
 
+# then the checkboxes for the equipment
+caretacheck.grid(row=1, column=0, sticky=W)
+guantecheck.grid(row=2, column=0, sticky=W)
+chaquetillacheck.grid(row=3, column=0, sticky=W)
+espadacheck.grid(row=4, column=0, sticky=W)
+pasantecheck.grid(row=5, column=0, sticky=W)
+protectorcheck.grid(row=6, column=0, sticky=W)
+
 # then initialize and put the frames up
-medidasFrame.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
-equipacionFrame.grid(row=0, column=1, sticky=W, padx=10, pady=10)
-summaryFrame.grid(row=1, column=0, sticky=W, padx=10, pady=10)
-lateButton.grid(row=1, column=3)
+nombreFrame.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
+lateralidadFrame.grid(row=0, column=1, sticky=NW, padx=10, pady=10)
+medidasFrame.grid(row=1, column=0, sticky=NW, padx=10, pady=10)
+equipacionFrame.grid(row=2, column=0, sticky=NW, padx=10, pady=10)
+summaryFrame.grid(row=2, column=1, sticky=NW, padx=10, pady=10)
 limpiarResumenButton.grid(row=3, column=1)
 cerrar.grid(row=3, column=2, sticky=E)
 
