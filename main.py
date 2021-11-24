@@ -7,6 +7,8 @@ from tkinter import ttk
 root = Tk()
 root.title("Pedidos Material Esgrima")
 root.geometry("1000x600")
+'''img = PhotoImage(file='CEApng.xbm')
+root.tk.call('wm', 'iconphoto', root._w, img)'''
 if os.name == "nt":
     root.wm_iconbitmap(bitmap="CEApng.ico")
 else:
