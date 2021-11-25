@@ -161,7 +161,8 @@ def limpiarresumen():
 
 
 # This function copies the summary to the clipboard
-def copiarresumen(nombre, apellido, careta, guante, chaquetilla, espada, pasante, protector, diestro, zurdo, tallagua, tallacha):
+def copiarresumen(nombre, apellido, careta, guante, chaquetilla, espada, pasante, protector,
+                  diestro, zurdo, tallagua, tallacha):
     summaryFrame.clipboard_clear()
     output = " "
     if nombre:
@@ -191,6 +192,7 @@ def copiarresumen(nombre, apellido, careta, guante, chaquetilla, espada, pasante
     summaryFrame.clipboard_append(output)
     summaryFrame.update()
     return
+
 
 # Create entry for name
 nombreLabel = Label(nombreFrame, text="Nombre: ")
@@ -271,12 +273,12 @@ tallaEntry = Entry(summaryFrame, width=5)
 
 # Define buttons
 buttonCalcularMasc = Button(medidasFrame, text="Calcular talla masculina", width=20, command=lambda: medidasmasculino(
-                                                                                                    int(alturaEntry.get()),
-                                                                                                    int(pechoEntry.get()),
+                                                                                                int(alturaEntry.get()),
+                                                                                                int(pechoEntry.get()),
                                                                                             ))
 buttonCalcularFem = Button(medidasFrame, text="Calcular talla femenina", width=20, command=lambda: medidasfemenino(
-                                                                                                    int(alturaEntry.get()),
-                                                                                                    int(pechoEntry.get()),
+                                                                                                int(alturaEntry.get()),
+                                                                                                int(pechoEntry.get()),
                                                                                             ))
 equipMButton = Button(equipacionFrame, text="Equipación completa Mas", width=20, command=lambda: equipcompleta("masc"))
 equipFButton = Button(equipacionFrame, text="Equipación completa Fem", width=20, command=lambda: equipcompleta("fem"))
@@ -295,7 +297,7 @@ resumenButton = Button(equipacionFrame, text="Resumen equipación", width=20, co
                                                                                             ))
 limpiarResumenButton = Button(summaryFrame, text="Limpiar pedido", width=16, command=limpiarresumen)
 copiarResumenButton = Button(summaryFrame, text="Copiar a portapapeles", width=16, command=lambda: copiarresumen(
-                                                                                                   nombreFrame.get(),
+                                                                                                   nombreEntry.get(),
                                                                                                    apellidosEntry.get(), 
                                                                                                    caretavar.get(),
                                                                                                    guantevar.get(),
