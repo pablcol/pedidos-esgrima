@@ -6,7 +6,7 @@ from tkinter import ttk
 # Initialize tkinter, give it a page name and a max size
 root = Tk()
 root.title("Pedidos Material Esgrima")
-root.geometry("800x600")
+root.geometry("800x620")
 '''img = PhotoImage(file='CEApng.xbm')
 root.tk.call('wm', 'iconphoto', root._w, img)'''
 if os.name == "nt":
@@ -161,7 +161,30 @@ def limpiarresumen():
 
 
 # This function copies the summary to the clipboard
-def copiarresumen():
+def copiarresumen(careta, guante, chaquetilla, espada, pasante, protector, diestro, zurdo, tallagua, tallacha):
+    summaryFrame.clipboard_clear()
+    if careta:
+        output = "Careta"
+    if guante and diestro:
+        if tallagua != "Seleccionar talla":
+            output += ("\nGuante diestro talla " + str(tallagua))
+    if guante and zurdo:
+        if tallagua != "Seleccionar talla":
+            output += ("\nGuante zurdo talla " + str(tallagua))
+    if chaquetilla and diestro:
+        output += ("\nChaquetilla diestro talla " + tallacha)
+    if chaquetilla and zurdo:
+        output += ("\nChaquetilla zurdo talla " + tallacha)
+    if espada and diestro:
+        output += ("\nEspada diestro")
+    if espada and zurdo:
+        output += ("\nEspada zurdo")
+    if pasante:
+        output += ("\nPasante")
+    if protector:
+        output += ("\nProtector")
+    summaryFrame.clipboard_append(output)
+    summaryFrame.update()
     return
 
 # Create entry for name
@@ -243,30 +266,41 @@ tallaEntry = Entry(summaryFrame, width=5)
 
 # Define buttons
 buttonCalcularMasc = Button(medidasFrame, text="Calcular talla masculina", width=20, command=lambda: medidasmasculino(
-                                                                                            int(alturaEntry.get()),
-                                                                                            int(pechoEntry.get()),
+                                                                                                    int(alturaEntry.get()),
+                                                                                                    int(pechoEntry.get()),
                                                                                             ))
 buttonCalcularFem = Button(medidasFrame, text="Calcular talla femenina", width=20, command=lambda: medidasfemenino(
-                                                                                            int(alturaEntry.get()),
-                                                                                            int(pechoEntry.get()),
+                                                                                                    int(alturaEntry.get()),
+                                                                                                    int(pechoEntry.get()),
                                                                                             ))
 equipMButton = Button(equipacionFrame, text="Equipación completa Mas", width=20, command=lambda: equipcompleta("masc"))
 equipFButton = Button(equipacionFrame, text="Equipación completa Fem", width=20, command=lambda: equipcompleta("fem"))
 limpiarEquipButton = Button(equipacionFrame, text="Limpiar", width=20, command=limpiarequip)
 resumenButton = Button(equipacionFrame, text="Resumen equipación", width=20, command=lambda: summary(
-                                                                                            caretavar.get(),
-                                                                                            guantevar.get(),
-                                                                                            chaquetillavar.get(),
-                                                                                            espadavar.get(),
-                                                                                            pasantevar.get(),
-                                                                                            protectorvar.get(),
-                                                                                            diestrovar.get(),
-                                                                                            zurdovar.get(),
-                                                                                            comboGloves.get(),
-                                                                                            tallaEntry.get()
+                                                                                             caretavar.get(),
+                                                                                             guantevar.get(),
+                                                                                             chaquetillavar.get(),
+                                                                                             espadavar.get(),
+                                                                                             pasantevar.get(),
+                                                                                             protectorvar.get(),
+                                                                                             diestrovar.get(),
+                                                                                             zurdovar.get(),
+                                                                                             comboGloves.get(),
+                                                                                             tallaEntry.get()
                                                                                             ))
 limpiarResumenButton = Button(summaryFrame, text="Limpiar pedido", width=16, command=limpiarresumen)
-copiarResumenButton = Button(summaryFrame, text="Copiar a portapapeles", width=16, command=copiarresumen)
+copiarResumenButton = Button(summaryFrame, text="Copiar a portapapeles", width=16, command=lambda: copiarresumen(
+                                                                                                   caretavar.get(),
+                                                                                                   guantevar.get(),
+                                                                                                   chaquetillavar.get(),
+                                                                                                   espadavar.get(),
+                                                                                                   pasantevar.get(),
+                                                                                                   protectorvar.get(),
+                                                                                                   diestrovar.get(),
+                                                                                                   zurdovar.get(),
+                                                                                                   comboGloves.get(),
+                                                                                                   tallaEntry.get()
+                                                                                            ))
 cerrar = Button(root, text="Cerrar", width=10, command=root.quit)
 
 # Put elements on app
