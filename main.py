@@ -161,10 +161,15 @@ def limpiarresumen():
 
 
 # This function copies the summary to the clipboard
-def copiarresumen(careta, guante, chaquetilla, espada, pasante, protector, diestro, zurdo, tallagua, tallacha):
+def copiarresumen(nombre, apellido, careta, guante, chaquetilla, espada, pasante, protector, diestro, zurdo, tallagua, tallacha):
     summaryFrame.clipboard_clear()
+    output = " "
+    if nombre:
+        output += ("Nombre: " + nombre)
+    if apellido:
+        output += ("\nApellidos: " + apellido)
     if careta:
-        output = "Careta"
+        output += "\nCareta"
     if guante and diestro:
         if tallagua != "Seleccionar talla":
             output += ("\nGuante diestro talla " + str(tallagua))
@@ -176,13 +181,13 @@ def copiarresumen(careta, guante, chaquetilla, espada, pasante, protector, diest
     if chaquetilla and zurdo:
         output += ("\nChaquetilla zurdo talla " + tallacha)
     if espada and diestro:
-        output += ("\nEspada diestro")
+        output += "\nEspada diestro"
     if espada and zurdo:
-        output += ("\nEspada zurdo")
+        output += "\nEspada zurdo"
     if pasante:
-        output += ("\nPasante")
+        output += "\nPasante"
     if protector:
-        output += ("\nProtector")
+        output += "\nProtector"
     summaryFrame.clipboard_append(output)
     summaryFrame.update()
     return
@@ -290,6 +295,8 @@ resumenButton = Button(equipacionFrame, text="Resumen equipación", width=20, co
                                                                                             ))
 limpiarResumenButton = Button(summaryFrame, text="Limpiar pedido", width=16, command=limpiarresumen)
 copiarResumenButton = Button(summaryFrame, text="Copiar a portapapeles", width=16, command=lambda: copiarresumen(
+                                                                                                   nombreFrame.get(),
+                                                                                                   apellidosEntry.get(), 
                                                                                                    caretavar.get(),
                                                                                                    guantevar.get(),
                                                                                                    chaquetillavar.get(),
